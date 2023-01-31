@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { fireEvent, render, screen } from '@testing-library/react';
+import Light from './Light';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+it('change from off to on', () => {
+	render(<Light name="전원" />);
+	const onButtonElement = screen.getByRole('button', { name: 'ON' });
+	fireEvent.click(onButtonElement);
+	expect(onButtonElement).toBeDisabled();
+})
